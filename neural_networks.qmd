@@ -1,0 +1,215 @@
+# Neural Networks
+
+Neural networks are a class of supervised-learning algorithms that can be used both for regression and classification. They are very powerful models that have seen many successful applications such as for language translation or image processing tasks.
+
+For this brief introduction to neural networks, with the help of a toy example, we will start by explaining how they work. We will then show how neural networks are trained. We will finish by discussing neural networks' drawbacks and their successful application in the field of ...
+
+## A Simple Neural Network
+
+As in any supervised-learning problem, say you are interested in predicting a variable y based on some input (x1, x2). Let's call f the function that maps (x1,x2) to y.
+
+In linear regression, we assume f can be approximated by a function f_hat of the form f_hat(x1,x2) = p1 \* x1 + p2 \* x2 + p3. We then look for the set of parameters (p1,p2,p3) such that our approximation f_hat is as close as possible to f.
+
+Neural networks are similar, although we assume f_hat takes a slightly different form. We can represent a very simple network visually as follow:
+
+```{r}
+library(knitr)
+include_graphics("simple_neural_network.png")
+```
+
+Our function f_hat is a bit more complex. It is not a linear combination of the input. Given some input (x1, x2) to compute the output of f_hat, we first compute a set of intermediate variables h1, h2, h3 that are all linear combinations of x1 and x2. So
+
+h1 = p1_1 \* x1 + p1_2 \* x2 + p1_3
+
+h2 = p2_1 \* x1 + p2_2 \* x2 + p2_3
+
+h3 = p3_1 \* x1 + p3_2 \* x2 + p3_3
+
+for some given parameters pi_j.
+
+We then pass h1, h2, h3 through what we call an activation function. This activation function can be any continuous function, as long as it is non-linear. Here we will use the activation function AF(x) = x if x\>0 and AF(x) = 0 otherwise, or AF(x) = max(x, 0).
+
+The output of our neural network, f_hat(x1, x2) or y_hat, is then a linear combination of h1, h2, h3. So
+
+f(x1, x2) = q1 \* h1 + q2 \* h2 + q3 \* h3 + q4
+
+for some given parameters (q1, q2, q3, q4).
+
+As for linear regression, the goal is then to learn the optimal set of parameters (p1_1, p1_2, ... , q1, q2, q3, q4) such that our function f_hat is as close as possible to f.
+
+As an example, say our neural network has parameters:
+
+```{r}
+p1 = c(2, 1, 1)
+p2 = c(3, 0, 1)
+p3 = c(0, 2, 1)
+q = c(1, 0, 4, -2)
+```
+
+Then for the input:
+
+```{r}
+x = c(2, 1)
+```
+
+The output of f_hat is:
+
+```{r}
+x = append(x, 1)
+h1 = max(sum(x*p1), 0) # max is the activation function
+h2 = max(sum(x*p2), 0)
+h3 = max(sum(x*p3), 0)
+
+h = c(h1, h2, h3, 1)
+y_hat = sum(h*q)
+print(paste('f_hat(2, 1) =', y_hat))
+```
+
+This is a very simple network with one hidden layer of size 3: (h1, h2, h3). In practice, neural networks are much bigger and can have hundreds of layers with thousands of variables each.
+
+## Training a Neural Network
+
+To show how a neural network can be trained, we will train a neural network on the simplest of datasets, a single data point. Let's assume that the true function we are trying to learn, f, maps (x1, x2) to some output y.
+
+We will model f using the same neural network as the one described above, that is, a neural network with one hidden layer of size 3.
+
+```{r}
+p1 = c(1,-1,4) # randomly initialized
+p2 = c(2,1,-3) # randomly initialized
+p3 = c(4,-2,-1) # randomly initialized
+q = c(-2,5,3,1) # randomly initialized
+
+forward_pass = function(x) {
+  x = append(x, 1)
+  h = c(max(sum(x*p1),0), max(sum(x*p2),0), max(sum(x*p3),0))
+  h = append(h, 1)
+  y_hat = sum(h*q)
+  output = list(h, y_hat)
+  return(output)
+}
+
+x = c(2,1)
+y_hat = unlist(forward_pass(x)[2])
+print(y_hat)
+```
+
+For each data point (x1, x2), our neural network predicts an output y_hat. The goal is then to make y_hat as close as possible to y. To measure how "close", y and y_hat are, we can use the Euclidean distance (y-y_hat)\*\*2.
+
+We then want to learn the set of parameters (p1, p2, p3, q) such that the average Euclidean distance between our predictions y_hat and the true output y is as small as possible. We call that objective minimising the loss function.
+
+```{r}
+loss = function(y_hat, y) {
+  l = (y_hat - y)**2
+  return(l)
+}
+
+print(loss(3,5))
+```
+
+In linear regression, we can simply take the derivative of that loss with respect to our parameters and compute an analytic formula for the set of optimal parameters. Unfortunately, this is not possible for neural networks. We thus use an algorithm called gradient descent.
+
+Gradient descent is an iterative algorithm. We start with an initial set of parameters for our neural network. We then take a few data points and compute our predictions. We then compare these predictions to the true outputs and calculate the loss. The loss tells us how well our neural network is performing. We can then use the loss as a signal for the neural network and update the parameters to reduce it. To use the loss to teach the neural network how to improve, we need to compute the derivatives of the loss with respect to the network's parameters (formulas based on wikipedia):
+
+```{r}
+d_loss_d_q = function(y, y_hat, h) {
+  d_loss_d_y_hat_ = 2 * (y_hat - y)
+  d_y_hat_d_q_ = h
+  return(d_loss_d_y_hat_ * d_y_hat_d_q_)
+}
+
+d_loss_d_h = function(y, y_hat) {
+  d_loss_d_y_hat_ = 2 * (y_hat - y)
+  d_y_hat_d_h_ = q
+  return(d_loss_d_y_hat_ * d_y_hat_d_h_)
+}
+
+d_loss_d_h_pre_activation = function(y , y_hat, h) {
+  d_loss_d_h_ = d_loss_d_h(y, y_hat)
+  d_h_d_h_pre_activation_ = pmin(pmax(h, 0), 1)
+  return(d_loss_d_h_ * d_h_d_h_pre_activation_)
+}
+
+d_loss_dp1 = function(y , y_hat, h, x) {
+  d_loss_d_h1_ = d_loss_d_h_pre_activation(y, y_hat, h)[1]
+  d_h1_dp1_ = append(x, 1)
+  return(d_loss_d_h1_ * d_h1_dp1_)
+}
+
+d_loss_dp2 = function(y , y_hat, h, x) {
+  d_loss_d_h2_ = d_loss_d_h_pre_activation(y, y_hat, h)[2]
+  d_h2_dp2_ = append(x, 1)
+  return(d_loss_d_h2_ * d_h2_dp2_)
+}
+
+d_loss_dp3 = function(y , y_hat, h, x) {
+  d_loss_d_h3_ = d_loss_d_h_pre_activation(y, y_hat, h)[3]
+  d_h3_dp3_ = append(x, 1)
+  return(d_loss_d_h3_ * d_h3_dp3_)
+}
+
+```
+
+So for the input (1,2), the updates are:
+
+```{r}
+x_example = c(1,2)
+# Assuming the function we are trying to learn is f(x1, x2) = x1 * x2 + x2
+y_example = 1*2 + 2
+
+# Prediction
+output = forward_pass(x_example)
+h = unlist(output[1])
+y_hat = unlist(output[2])
+print('hidden layer')
+print(h)
+print('prediction')
+print(y_hat)
+
+# Loss
+l = loss(y_hat, y_example)
+print('loss')
+print(l)
+
+# Derivatives
+print('derivatives')
+d_loss_d_q_ = d_loss_d_q(y_example, y_hat, h)
+print(d_loss_d_q_)
+d_loss_d_p1_ = d_loss_dp1(y_example, y_hat, h, x_example)
+print(d_loss_d_p1_)
+d_loss_d_p2_ = d_loss_dp2(y_example, y_hat, h, x_example)
+print(d_loss_d_p2_)
+d_loss_d_p3_ = d_loss_dp3(y_example, y_hat, h, x_example)
+print(d_loss_d_p3_)
+
+# Updates
+step_size = 0.01
+q = q - step_size * d_loss_d_q_
+p1 = p1 - step_size * d_loss_d_p1_
+p2 = p2 - step_size * d_loss_d_p2_
+p3 = p3 - step_size * d_loss_d_p3_
+print('updated neural network parameters')
+print(q)
+print(p1)
+print(p2)
+print(p3)
+```
+
+If we run this cell multiple times (\>10 times), we see the loss decreasing. Note that here we are only training the network on a single data point. Usually, we have thousands of data points and so we use all of them during training.
+
+## Drawbacks of Neural Networks
+
+Neural networks have several drawbacks.
+
+1.  For complex tasks such as image classification, neural networks require thousands to millions of data points. In some instances, we simply do not have access to so much data (say data that is manually collected from a set of participants). In that case, we simply have to go with other supervised-learning algorithms.
+
+2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learnt. In critical applications such as disease prediction, we want to be able to explain why we're prescribing a certain treatment to a patient. Simply saying "the algorithm said so" is not enough.
+
+3.  Neural networks also depend on many hyperparameters, such as the step size or initial neural network parameter values, and it is not clear how best to initialize them. There exists some rules of thumb, but in practice, training neural networks usually requires trying multiple set ups until a good enough one is achieved.
+
+4.  Neural networks consumes a large amount of computing resources and thus electricity. (check some articles online). In a world where we are trying to reduce our carbon footprint, this is not ideal.
+
+On the other hand, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction (Alpha Fold by DeepMind)!
+
+## Applications
+
+Look for public policy applications. 
