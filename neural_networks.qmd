@@ -206,10 +206,17 @@ Neural networks have several drawbacks.
 
 3.  Neural networks also depend on many hyperparameters, such as the step size or initial neural network parameter values, and it is not clear how best to initialize them. There exists some rules of thumb, but in practice, training neural networks usually requires trying multiple set ups until a good enough one is achieved.
 
-4.  Neural networks consumes a large amount of computing resources and thus electricity. (check some articles online). In a world where we are trying to reduce our carbon footprint, this is not ideal.
+4.  Neural networks consumes a large amount of computing resources and thus electricity. In a world where we are trying to reduce our carbon footprint, this is not ideal.
 
 On the other hand, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction (Alpha Fold by DeepMind)!
 
 ## Applications
 
-Look for public policy applications. 
+Neural networks have several applications. 
+
+1.	Since the neural network model can analyze the behavior of the person, it can be used to predict the preference of the policy by the public.
+
+2.	Evaluate the policy in energy and public health in the long term by modeling the effect of the policy on the system and predicting the results under it. For example, Dozic, Damir J. and Urosevic, Branka D. Gvozdenac predict the emission of CO2 in the long term with current energy plicies by using the neural network model and evaluate the energy policy based on the prediction. 
+
+3.	The Neural networks can be used in the process of policy-making. We can examine a set of combination of inputs in the model to find the best output under budget constraint.
+
