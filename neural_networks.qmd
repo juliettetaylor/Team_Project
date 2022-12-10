@@ -1,3 +1,10 @@
+---
+title: "Neural Networks"
+format: pdf
+editor: visual
+author: "Juliette Taylor and Roujia Lin"
+---
+
 # Neural Networks
 
 Neural networks are a class of supervised-learning algorithms that can be used both for regression and classification. They are very powerful models that have seen many successful applications such as for language translation or image processing tasks.
@@ -196,27 +203,66 @@ print(p3)
 
 If we run this cell multiple times (\>10 times), we see the loss decreasing. Note that here we are only training the network on a single data point. Usually, we have thousands of data points and so we use all of them during training.
 
-## Drawbacks of Neural Networks
+## Drawbacks and advantage of Neural Networks
 
 Neural networks have several drawbacks.
 
-1.  For complex tasks such as image classification, neural networks require thousands to millions of data points. In some instances, we simply do not have access to so much data (say data that is manually collected from a set of participants). In that case, we simply have to go with other supervised-learning algorithms.
+1.  Neural networks model need a lot of data to train. In the area of public policy, sometimes we do not have enough resource to achieve the enough amount of data which can prevent neural network model to be overfit.For complex tasks such as image classification, neural networks require thousands to millions of data points.
 
-2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learnt. In critical applications such as disease prediction, we want to be able to explain why we're prescribing a certain treatment to a patient. Simply saying "the algorithm said so" is not enough.
+2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learnt. In critical applications such as disease prediction, we want to be able to explain why we're prescribing a certain treatment to a patient. Simply saying "the algorithm said so" is not enough. This drawback is more serious in the area of public policy. Because the policy is relating to the welfare of the public, it is important that we can explain why we set up a policy to the public, who might not has much computer science background.
 
 3.  Neural networks also depend on many hyperparameters, such as the step size or initial neural network parameter values, and it is not clear how best to initialize them. There exists some rules of thumb, but in practice, training neural networks usually requires trying multiple set ups until a good enough one is achieved.
 
 4.  Neural networks consumes a large amount of computing resources and thus electricity. In a world where we are trying to reduce our carbon footprint, this is not ideal.
 
-On the other hand, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction (Alpha Fold by DeepMind)!
+Although neural network has many shortcoming, it has several advantages as well.
+
+1.  its accuracy is higher than traditional machine learning model with enough data. Since the model use tseveral hidden layers, the predictions this model made are even include the hidden relationship. Also, the model can optimize the weight of different inputs which can help the model to make more accurate prediction.
+2.  it can deal with non-linear and complex relationship between the inputs and the output. The model sets several hidden level to convert the linear relationship to non-linear relationship and make better predictions.
+
+Because of the advantages neural network have, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction.
 
 ## Applications
 
-Neural networks have several applications. 
+Neural network model is often used to evaluation ecosystem and make the prediction of energy demand. In term of policy, it is often used in the area of environment and energy .
 
-1.	Since the neural network model can analyze the behavior of the person, it can be used to predict the preference of the policy by the public.
+In a study, Artificial Neural Networks is used to predict some parameters which can be used as the indicators of the quality of the water, such as PH value and hardness, to measure the difference in the water quality in the rainy and dry season. Knowing the result of the research, the policymaker can make different solution in different season to improve the water quality of the area.\[1\]Another study uses Neural Networks into the policy of ridesharing to reduce the cost in taxi.\[2\]
 
-2.	Evaluate the policy in energy and public health in the long term by modeling the effect of the policy on the system and predicting the results under it. For example, Dozic, Damir J. and Urosevic, Branka D. Gvozdenac predict the emission of CO2 in the long term with current energy plicies by using the neural network model and evaluate the energy policy based on the prediction. 
+In this case, neural network model is used to find out the relationship in the factor in an area, which can be used to making the policy.
 
-3.	The Neural networks can be used in the process of policy-making. We can examine a set of combination of inputs in the model to find the best output under budget constraint.
+Not only the neural networks model can be used to make the policy, but it can also use to evaluate the policy outcome. In another study, the researchers predict the emission of CO2 in the long term in the EU using the neural network model to evaluate the current energy policy and analyze the relevant indicators which can be changed to get the better outcome.[\[3\]](#_ftn3)
+
+Combining it into the policy making and using it to predict the outcome of
+the policy are the main way to use neural network model in policy. From our perspective,the neural network model can also be used to analyze the preference of the policy by the public. A study use the neural network model to predict the spillovers and dilution effect of the advertising. [\[4\]](#_ftn4)And we can also use this model to predict the same thing from a policy. By collecting data from the social media, and train the neural network by it, we can predict whether people will have positive or negative feeling about a policy.
+
+In conclusion, the neural network model is hard to interpret, need a large number of data to train it, but it is useful when we make and evaluate energy and environmrnt policy.
+
+ 
+
+\
+
+------------------------------------------------------------------------
+
+[\[1\]](#_ftnref1) Cavalcante, Y.L., R.A. Hauser-Davis, A.C.F. Saraiva, I.L.S.
+Brandão, T.F. Oliveira, and A.M. Silveira. \"Metal and Physico-Chemical
+Variations at a Hydroelectric Reservoir Analyzed by Multivariate Analyses and
+Artificial Neural Networks: Environmental Management and Policy/decision-Making
+Tools.\" *The Science of the
+Total Environment* 442 (2013): 509--14.
+https://doi.org/10.1016/j.scitotenv.2012.10.059.
+
+[\[2\]](#_ftnref2) Obias, Karl, Elmer R Magsino, and Edwin Sybingco. \"Neural
+Network-Based Ridesharing Policy for Reducing Rider Transportation Cost.\" *Journal of Physics: Conference Series* 1997, no. 1
+(2021): 12011--. https://doi.org/10.1088/1742-6596/1997/1/012011.
+
+[\[3\]](#_ftnref3) Dozic, Damir J., and Branka D. Gvozdenac Urosevic.
+\"Application of Artificial Neural Networks for Testing Long-Term Energy Policy
+Targets.\" *Energy (Oxford)* 174 (2019):
+488--96. https://doi.org/10.1016/j.energy.2019.02.191.
+
+[\[4\]](#_ftnref4) Bhatt, Meghana
+A. \"Evaluation and Associations: A Neural-Network Model of Advertising and
+Consumer Choice.\" *Journal of Economic Behavior & Organization* 82, no. 1 (2012): 236--55.
+https://doi.org/10.1016/j.jebo.2012.02.001.
+
 
