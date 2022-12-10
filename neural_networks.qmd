@@ -203,7 +203,7 @@ print(p3)
 
 If we run this cell multiple times (\>10 times), we see the loss decreasing. Note that here we are only training the network on a single data point. Usually, we have thousands of data points and so we use all of them during training.
 
-## Drawbacks and advantage of Neural Networks
+## Drawbacks and advantages of Neural Networks
 
 Neural networks have several drawbacks.
 
