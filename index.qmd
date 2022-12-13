@@ -1,6 +1,6 @@
 ---
 title: "Neural Networks"
-format: pdf
+format: html
 editor: visual
 author: "Juliette Taylor and Roujia Lin"
 ---
