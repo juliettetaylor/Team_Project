@@ -6,3 +6,5 @@ Goal: The goal of this project is to discuss the neural network model. To achiev
 Motivation: The reason of creating this project is to learn more about how supervised model work and be used in the area of public policy.
 
 Status: This project is completed.
+
+Github Page: https://juliettetaylor.github.io/Team_Project/
