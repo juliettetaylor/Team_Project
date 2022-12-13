@@ -213,7 +213,7 @@ In this project, we do not expand our work to a bigger dataset or apply them to 
 
 When we expand the data, it is better to use some packages to help us better build the neural network model. In the work we do above, we do not use the package designed to be used in the building of the neural network model, however, there are a lots of R packages in CRAN which can be used to build the neural network models. In those packages, four packages are often used: "tensorflow","keras","nnet", "neuralnet".
 
-"Keras" allows us to run the experimentation faster. "Tensorflow" enable us to use TensorFlow in r. "Nnet" is often used in feed-forward neural network model which has only one hidden layer \[1\], while "neuralnet" can be used in a more complex model. Using "neuralnet" package, we can choose the repetition of the training, the algorithm and the activation function we used to train the model etc. Since "neuralnet" can set up a series of different settings in the model and can be used in more kinds of neural network models, it is the most popular package used in R to build the neural network model.
+"Keras" allows us to run the experimentation faster. \[1\] "Tensorflow" enable us to use TensorFlow in r. "Nnet" is often used in feed-forward neural network model which has only one hidden layer \[2\], while "neuralnet" can be used in a more complex model. Using "neuralnet" package, we can choose the repetition of the training, the algorithm and the activation function we used to train the model etc. Since "neuralnet" can set up a series of different settings in the model and can be used in more kinds of neural network models, it is the most popular package used in R to build the neural network model.
 
 ## Drawbacks and advantages 
 
@@ -221,7 +221,7 @@ Neural networks have several drawbacks.
 
 1.  When we train the neural network model, we need a lots of data. But getting a large amount of data cost a lot money. Hence, in the area of public policy, we need to evaluate the benefit and the cost of building a neural network model. For complex tasks such as image classification, neural networks requires thousands to millions of data points. 
 
-2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learned. In critical applications such as disease prediction, we want to be able to explain why we're prescribing a certain treatment to a patient. Simply saying "the algorithm said so" is not enough. This drawback is more serious in the area of public policy. Because the policy is related to the welfare of the public, it is important that we can explain why we set up a policy for the public, who might not have much computer science background.
+2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learned. This drawback is more serious in the area of public policy. Because the policy is related to the welfare of the public, it is important that we can explain why we set up a policy for the public, who might not have much computer science background. Simply saying "the algorithm said so" is not enough.
 
 3.  Neural networks also depend on many hyperparameters, such as the step, size, or initial neural network parameter values, and it is not clear how best to initialize them. There exist some rules of thumb, but in practice, training neural networks usually requires trying multiple setups until a good enough one is achieved.
 
@@ -229,9 +229,9 @@ Neural networks have several drawbacks.
 
 Although the neural network has many shortcomings, it has several advantages as well.
 
-1.  Its accuracy is higher than traditional machine learning models with enough data. Since the model uses several hidden layers, the predictions this model made even include the hidden relationship. Also, the model can optimize the weight of different inputs which can help the model to make a more accurate prediction.
+1.  Its accuracy is higher than other traditional machine learning models with enough data. Since the model uses several hidden layers, the predictions this model made even include the hidden relationship. Also, the model can optimize the weight of different inputs which can help the model to make a more accurate prediction.
 
-2.  Unlike regression model, it can measure non-linear and even more complex relationships between the inputs and the output. The model sets several hidden levels to convert the linear relationship to a non-linear relationship and make better predictions. 
+2.  It can measure non-linear\\ relationships between the inputs and the output. The model sets several hidden levels to convert the linear relationship to a non-linear relationship and make better predictions. 
 
 Because of the advantages neural networks have, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction.
 
@@ -239,17 +239,17 @@ Because of the advantages neural networks have, neural networks are at the foref
 
 In terms of policy, the neural network model is often used in the area of environment and energy. For energy, It is often used to predict the price and demand of energy which can help policymakers to better understand the market. For the environment, it can be used to evaluate the current policy and help examine the factors which can have an impact on the environment.
 
-In a study performed by Cavalcante, Y.L., R.A. Hauser-Davis, Artificial Neural Networks are used to predict some parameters which can be used as the indicators of the quality of the water, such as PH value and hardness, to measure the difference in the water quality in the different seasons. Knowing the result of the research, the policymaker can make different solutions based on different seasons to improve the water quality of the area. \[2\] Geem, Zong Woo, and Roper, William E. use a neural network model to estimate the energy demand in South Korea using GDP, population, import amount, and export amount to help the government better set up its energy policy. \[3\] Koutroumanidis, Theodoros, Ioannou, Konstantinos and Arabatzis, Garyfallos combine the artificial neural network model and ARIMA model to predict the price of fuelwood in Greece to help energy policy maker to better understand the fuelwood market. \[4\]
+In a study performed by Cavalcante, Y.L., R.A. Hauser-Davis, Artificial Neural Networks are used to predict some parameters which can be used as the indicators of the quality of the water, such as PH value and hardness, to measure the difference in the water quality in the different seasons. Knowing the result of the research, the policymaker can make different solutions based on different seasons to improve the water quality of the area. \[3\] Geem, Zong Woo, and Roper, William E. use a neural network model to estimate the energy demand in South Korea using GDP, population, import amount, and export amount to help the government better set up its energy policy. \[4\] Koutroumanidis, Theodoros, Ioannou, Konstantinos and Arabatzis, Garyfallos combine the artificial neural network model and ARIMA model to predict the price of fuelwood in Greece to help energy policy maker to better understand the fuelwood market. \[5\]
 
 In these cases, the neural network model is used to find out the relationship between the inputs and the output, which can be used to better make the policy.
 
-Not only the neural networks model can be used to make the policy, but it can also use to evaluate the policy outcome. Dozic, Damir J., and Branka D. Gvozdenac Urosevic. predict the emission of CO2 in the long term in the EU using the neural network model to evaluate the current energy policy and analyze the relevant indicators which can be changed to get a better outcome. \[5\]
+Not only the neural networks model can be used to make the policy, but it can also use to evaluate the policy outcome. Dozic, Damir J., and Branka D. Gvozdenac Urosevic. predict the emission of CO2 in the long term in the EU using the neural network model to evaluate the current energy policy and analyze the relevant indicators which can be changed to get a better outcome. \[6\]
 
-Combining it into policy-making and using it to predict the outcome of the policy is the main way to use the neural network model in the policy. From our perspective, the neural network model can also be used to analyze the preference of the policy by the public. Bhatt and Meghana A. use the neural network model to predict the spillovers and dilution effect of advertising. \[6\] We can also use this model to predict the same thing from a policy. By collecting data from social media, and training the neural network by it, we can predict whether people will have positive or negative feelings about a policy.
+Combining it into policy-making and using it to predict the outcome of the policy is the main way to use the neural network model in the policy. From our perspective, the neural network model can also be used to analyze the preference of the policy by the public. Bhatt and Meghana A. use the neural network model to predict the spillovers and dilution effect of advertising. \[7\] We can also use this model to predict the same thing from a policy. By collecting data from social media, and training the neural network by it, we can predict whether people will have positive or negative feelings about a policy.
 
 Although we cannot tell the problem in the current use of neural network model in policy, it does has a potential problem if we expand the use of it in the future: The model might have algorithmic bias.
 
-It is possible that the prediction from the neural network model has bias over some different groups because of the bias in the training dataset. Since the neural network model learns from the training, if there is bias over some variables (for example, gender, race, region), this kind of bias will be learned by the neural network model and the prediction made by it will have bias. Also, the different proportions of some variables in the training data will lead to bias in the predictions too. For example, if in the training data, men are 80%, women are 15%, and non-binary gender is 5%, the model is likely cannot predict well for women and non-binary gender since the low sample size can lead to the problem of under-fitting. Another cause of the bias is that several variables have correlation and this correlation is measured by a variable that is not included in the dataset. Since an important variable that has an impact on the result is neglected, the prediction can be inaccurate. \[7\]
+It is possible that the prediction from the neural network model has bias over some different groups because of the bias in the training dataset. Since the neural network model learns from the training, if there is bias over some variables (for example, gender, race, region), this kind of bias will be learned by the neural network model and the prediction made by it will have bias. Also, the different proportions of some variables in the training data will lead to bias in the predictions too. For example, if in the training data, men are 80%, women are 15%, and non-binary gender is 5%, the model is likely cannot predict well for women and non-binary gender since the low sample size can lead to the problem of under-fitting. Another cause of the bias is that several variables have correlation and this correlation is measured by a variable that is not included in the dataset. Since an important variable that has an impact on the result is neglected, the prediction can be inaccurate. \[8\]
 
 The effect of algorithmic bias is more serious in policymaking. The bias prediction can lead to overlooking the need of some groups or even lead to a policy that harms these groups. Since policy affects the public, we should be careful when we use the neural network model.
 
@@ -257,16 +257,18 @@ In conclusion, the neural network model is hard to interpret and needs a large n
 
 ## Footnote
 
-\[1\] 'Package nnet', 2022, https://cran.r-project.org/web/packages/nnet/nnet.pdf(accessed October 13 2022)
+\[1\] 'keras: R Interface to 'Keras', https://CRAN.R-project.org/package=keras
 
-\[2\] Cavalcante, Y.L., R.A. Hauser-Davis, A.C.F. Saraiva, I.L.S. Brandão, T.F. Oliveira, and A.M. Silveira. "Metal and Physico-Chemical Variations at a Hydroelectric Reservoir Analyzed by Multivariate Analyses and Artificial Neural Networks: Environmental Management and Policy/decision-Making Tools." *The Science of the Total Environment* 442 (2013): 509--14. https://doi.org/10.1016/j.scitotenv.2012.10.059.
+\[2\] 'Package nnet', 2022, https://cran.r-project.org/web/packages/nnet/nnet.pdf(accessed October 13 2022)
 
-\[3\] Geem, Zong Woo, and William E. Roper. "Energy Demand Estimation of South Korea Using Artificial Neural Network." *Energy Policy* 37, no. 10 (2009): 4049--54. https://doi.org/10.1016/j.enpol.2009.04.049.
+\[3\] Cavalcante, Y.L., R.A. Hauser-Davis, A.C.F. Saraiva, I.L.S. Brandão, T.F. Oliveira, and A.M. Silveira. "Metal and Physico-Chemical Variations at a Hydroelectric Reservoir Analyzed by Multivariate Analyses and Artificial Neural Networks: Environmental Management and Policy/decision-Making Tools." *The Science of the Total Environment* 442 (2013): 509--14. https://doi.org/10.1016/j.scitotenv.2012.10.059.
 
-\[4\] Koutroumanidis, Theodoros, Konstantinos Ioannou, and Garyfallos Arabatzis. "Predicting Fuelwood Prices in Greece with the Use of ARIMA Models, Artificial Neural Networks and a Hybrid ARIMA--ANN Model." *Energy Policy* 37, no. 9 (2009): 3627--34. https://doi.org/10.1016/j.enpol.2009.04.024.
+\[4\] Geem, Zong Woo, and William E. Roper. "Energy Demand Estimation of South Korea Using Artificial Neural Network." *Energy Policy* 37, no. 10 (2009): 4049--54. https://doi.org/10.1016/j.enpol.2009.04.049.
 
-\[5\] Dozic, Damir J., and Branka D. Gvozdenac Urosevic. "Application of Artificial Neural Networks for Testing Long-Term Energy Policy Targets." *Energy (Oxford)* 174 (2019): 488--96. https://doi.org/10.1016/j.energy.2019.02.191.
+\[5\] Koutroumanidis, Theodoros, Konstantinos Ioannou, and Garyfallos Arabatzis. "Predicting Fuelwood Prices in Greece with the Use of ARIMA Models, Artificial Neural Networks and a Hybrid ARIMA--ANN Model." *Energy Policy* 37, no. 9 (2009): 3627--34. https://doi.org/10.1016/j.enpol.2009.04.024.
 
-\[6\] Bhatt, Meghana A. "Evaluation and Associations: A Neural-Network Model of Advertising and Consumer Choice." *Journal of Economic Behavior & Organization* 82, no. 1 (2012): 236--55. https://doi.org/10.1016/j.jebo.2012.02.001.
+\[6\] Dozic, Damir J., and Branka D. Gvozdenac Urosevic. "Application of Artificial Neural Networks for Testing Long-Term Energy Policy Targets." *Energy (Oxford)* 174 (2019): 488--96. https://doi.org/10.1016/j.energy.2019.02.191.
 
-\[7\] Tackling Algorithmic Bias in Neural-Network Classifiers using Wasserstein-2 Regularization
+\[7\] Bhatt, Meghana A. "Evaluation and Associations: A Neural-Network Model of Advertising and Consumer Choice." *Journal of Economic Behavior & Organization* 82, no. 1 (2012): 236--55. https://doi.org/10.1016/j.jebo.2012.02.001.
+
+\[8\] Tackling Algorithmic Bias in Neural-Network Classifiers using Wasserstein-2 Regularization
