@@ -115,7 +115,7 @@ print(loss(3,5))
 
 In linear regression, we can simply take the derivative of that loss with respect to our parameters and compute an analytic formula for the set of optimal parameters. Unfortunately, this is not possible for neural networks. We thus use an algorithm called gradient descent.
 
-Gradient descent is an iterative algorithm. We start with an initial set of parameters for our neural network. We then take a few data points and compute our predictions. We then compare these predictions to the true outputs and calculate the loss. The loss tells us how well our neural network is performing. We can then use the loss as a signal for the neural network and update the parameters to reduce it. To use the loss to teach the neural network how to improve, we need to compute the derivatives of the loss with respect to the network's parameters (formulas based on wikipedia):
+Gradient descent is an iterative algorithm. We start with an initial set of parameters for our neural network. We then take a few data points and compute our predictions. We then compare these predictions to the true outputs and calculate the loss. The loss tells us how well our neural network is performing. We can then use the loss as a signal for the neural network and update the parameters to reduce it. To use the loss to teach the neural network how to improve, we need to compute the derivatives of the loss with respect to the network's parameters.
 
 ```{r}
 d_loss_d_q = function(y, y_hat, h) {
@@ -207,49 +207,49 @@ In this project, we do not expand our work to a bigger dataset or apply them to 
 
 1.  In the project, we set up the formulas to calculate the hidden layers and outputs by ourselves, but it is difficult to do so when we do not know the relationship between the input and the output. 
 
-2.  In the project, we use a feed-forward neural network that only calculates in one direction. In another word, it does not do the circle or loop in the calculation. However, when we use real-life data, sometimes we should use a Recurrent Neural Network to create a better model.
+2.  In the project, we use a feed-forward neural network which only calculates the dataset in one direction. In another word, it does not do the circle or loop in the calculation. However, when we use real-life data, sometimes we should use a Recurrent Neural Network to create a better model.
 
 3.  It is also difficult to find a big dataset that can properly train the neural network model. Also, after finding a dataset, we must examine the bias this dataset has on different subsets.
 
-When we expand the data, it is better to use some packages to help us better build the neural network model. In the work we do above, we do not use the package designed to be used in the building of the neural network model, however, there are a lots of R packages in CRAN which can be used to build the neural network models. In these packages, four packages are often used: "tensorflow","keras","nnet", "neuralnet".
+When we expand the data, it is better to use some packages to help us better build the neural network model. In the work we do above, we do not use the package designed to be used in the building of the neural network model, however, there are a lots of R packages in CRAN which can be used to build the neural network models. In those packages, four packages are often used: "tensorflow","keras","nnet", "neuralnet".
 
-"Keras" allows us to run the experimentation faster. "Tensorflow" enable us to use TensorFlow in r. "Nnet" is often used in feed-forward neural network model which has only one hidden layer, while "neuralnet" can be used in a more complex model. Using "neuralnet" package, we can choose the repetition of the training, the algorithm we used to train the model, the activation function we used in the training, etc. Since "neuralnet" can set up a series of different settings in the model and can be used in more kinds of neural network models, it is the most popular package used in R to build the neural network model.
+"Keras" allows us to run the experimentation faster. "Tensorflow" enable us to use TensorFlow in r. "Nnet" is often used in feed-forward neural network model which has only one hidden layer \[1\], while "neuralnet" can be used in a more complex model. Using "neuralnet" package, we can choose the repetition of the training, the algorithm and the activation function we used to train the model etc. Since "neuralnet" can set up a series of different settings in the model and can be used in more kinds of neural network models, it is the most popular package used in R to build the neural network model.
 
 ## Drawbacks and advantages 
 
 Neural networks have several drawbacks.
 
-1.  Neural networks model need a lot of data to train. In the area of public policy, sometimes we do not have enough resources to get enough amount of data can prevent neural network models to be overfitting. For complex tasks such as image classification, neural networks require thousands to millions of data points. 
+1.  When we train the neural network model, we need a lots of data. But getting a large amount of data cost a lot money. Hence, in the area of public policy, we need to evaluate the benefit and the cost of building a neural network model. For complex tasks such as image classification, neural networks requires thousands to millions of data points. 
 
 2.  Neural networks are hard to interpret. They are often referred to as black boxes, and it is hard to tell what the neural network has learned. In critical applications such as disease prediction, we want to be able to explain why we're prescribing a certain treatment to a patient. Simply saying "the algorithm said so" is not enough. This drawback is more serious in the area of public policy. Because the policy is related to the welfare of the public, it is important that we can explain why we set up a policy for the public, who might not have much computer science background.
 
-3.  Neural networks also depend on many hyperparameters, such as the step size or initial neural network parameter values, and it is not clear how best to initialize them. There exist some rules of thumb, but in practice, training neural networks usually requires trying multiple setups until a good enough one is achieved.
+3.  Neural networks also depend on many hyperparameters, such as the step, size, or initial neural network parameter values, and it is not clear how best to initialize them. There exist some rules of thumb, but in practice, training neural networks usually requires trying multiple setups until a good enough one is achieved.
 
 4.  Neural networks consume a large number of computing resources and thus electricity. In a world where we are trying to reduce our carbon footprint, this is not ideal.
 
 Although the neural network has many shortcomings, it has several advantages as well.
 
-1.  its accuracy is higher than traditional machine learning models with enough data. Since the model uses several hidden layers, the predictions this model made even include the hidden relationship. Also, the model can optimize the weight of different inputs which can help the model to make a more accurate prediction.
+1.  Its accuracy is higher than traditional machine learning models with enough data. Since the model uses several hidden layers, the predictions this model made even include the hidden relationship. Also, the model can optimize the weight of different inputs which can help the model to make a more accurate prediction.
 
-2.  it can deal with non-linear and complex relationships between the inputs and the output. The model sets several hidden levels to convert the linear relationship to a non-linear relationship and make better predictions. 
+2.  Unlike regression model, it can measure non-linear and even more complex relationships between the inputs and the output. The model sets several hidden levels to convert the linear relationship to a non-linear relationship and make better predictions. 
 
-Because of the advantages, neural networks have, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction.
+Because of the advantages neural networks have, neural networks are at the forefront of many ground-breaking advances such as protein structure prediction.
 
 ## Applications
 
 In terms of policy, the neural network model is often used in the area of environment and energy. For energy, It is often used to predict the price and demand of energy which can help policymakers to better understand the market. For the environment, it can be used to evaluate the current policy and help examine the factors which can have an impact on the environment.
 
-In a study performed by Cavalcante, Y.L., R.A. Hauser-Davis, Artificial Neural Networks are used to predict some parameters which can be used as the indicators of the quality of the water, such as PH value and hardness, to measure the difference in the water quality in the rainy and dry seasons. Knowing the result of the research, the policymaker can make different solutions in a different seasons to improve the water quality of the area.\[1\]Obias uses Neural Networks in the policy of ridesharing to reduce the cost of the taxi.\[2\]Geem, Zong Woo, and Roper, William E. use a neural network model to estimate the energy demand in South Korea using GDP, population, import amount, and export amount to help the government better set up the energy policy.\[3\]Koutroumanidis, Theodoros, Ioannou, Konstantinos and Arabatzis, Garyfallos combine the artificial neural network model and ARIMA model to predict the price of fuelwood in Greece to help energy policy maker to better understand the fuelwood market.\[4\]
+In a study performed by Cavalcante, Y.L., R.A. Hauser-Davis, Artificial Neural Networks are used to predict some parameters which can be used as the indicators of the quality of the water, such as PH value and hardness, to measure the difference in the water quality in the different seasons. Knowing the result of the research, the policymaker can make different solutions based on different seasons to improve the water quality of the area. \[2\] Geem, Zong Woo, and Roper, William E. use a neural network model to estimate the energy demand in South Korea using GDP, population, import amount, and export amount to help the government better set up its energy policy. \[3\] Koutroumanidis, Theodoros, Ioannou, Konstantinos and Arabatzis, Garyfallos combine the artificial neural network model and ARIMA model to predict the price of fuelwood in Greece to help energy policy maker to better understand the fuelwood market. \[4\]
 
-In this case, the neural network model is used to find out the relationship between the factor in an area, which can be used to make the policy.
+In these cases, the neural network model is used to find out the relationship between the inputs and the output, which can be used to better make the policy.
 
-Not only the neural networks model can be used to make the policy, but it can also use to evaluate the policy outcome. Dozic, Damir J., and Branka D. Gvozdenac Urosevic. predict the emission of CO2 in the long term in the EU using the neural network model to evaluate the current energy policy and analyze the relevant indicators which can be changed to get a better outcome.\[5\]
+Not only the neural networks model can be used to make the policy, but it can also use to evaluate the policy outcome. Dozic, Damir J., and Branka D. Gvozdenac Urosevic. predict the emission of CO2 in the long term in the EU using the neural network model to evaluate the current energy policy and analyze the relevant indicators which can be changed to get a better outcome. \[5\]
 
 Combining it into policy-making and using it to predict the outcome of the policy is the main way to use the neural network model in the policy. From our perspective, the neural network model can also be used to analyze the preference of the policy by the public. Bhatt and Meghana A. use the neural network model to predict the spillovers and dilution effect of advertising. \[6\] We can also use this model to predict the same thing from a policy. By collecting data from social media, and training the neural network by it, we can predict whether people will have positive or negative feelings about a policy.
 
 Although we cannot tell the problem in the current use of neural network model in policy, it does has a potential problem if we expand the use of it in the future: The model might have algorithmic bias.
 
-It is possible that the prediction from the neural network model has bias over some different groups because of the bias in the training dataset. Since the neural network model learns from the training, if there is bias over some variables (for example, gender, race, region), this kind of bias will be learned by the neural network model and the prediction made by it will have bias. Also, the different proportions of some variables in the training data will lead to bias in the predictions too. For example, if in the training data, men are 80%, women are 15%, and non-binary gender is 5%, the model is likely cannot predict well for women and non-binary gender since the low sample size can lead to under-fit. Another cause of the bias can be several variables has a correlation and this correlation is measured by a variable that is not included in the dataset. Since an important variable that has an impact on the result is neglected, the prediction can be inaccurate. \[7\]
+It is possible that the prediction from the neural network model has bias over some different groups because of the bias in the training dataset. Since the neural network model learns from the training, if there is bias over some variables (for example, gender, race, region), this kind of bias will be learned by the neural network model and the prediction made by it will have bias. Also, the different proportions of some variables in the training data will lead to bias in the predictions too. For example, if in the training data, men are 80%, women are 15%, and non-binary gender is 5%, the model is likely cannot predict well for women and non-binary gender since the low sample size can lead to the problem of under-fitting. Another cause of the bias is that several variables have correlation and this correlation is measured by a variable that is not included in the dataset. Since an important variable that has an impact on the result is neglected, the prediction can be inaccurate. \[7\]
 
 The effect of algorithmic bias is more serious in policymaking. The bias prediction can lead to overlooking the need of some groups or even lead to a policy that harms these groups. Since policy affects the public, we should be careful when we use the neural network model.
 
@@ -257,9 +257,9 @@ In conclusion, the neural network model is hard to interpret and needs a large n
 
 ## Footnote
 
-\[1\] Cavalcante, Y.L., R.A. Hauser-Davis, A.C.F. Saraiva, I.L.S. Brandão, T.F. Oliveira, and A.M. Silveira. "Metal and Physico-Chemical Variations at a Hydroelectric Reservoir Analyzed by Multivariate Analyses and Artificial Neural Networks: Environmental Management and Policy/decision-Making Tools." *The Science of the Total Environment* 442 (2013): 509--14. https://doi.org/10.1016/j.scitotenv.2012.10.059.
+\[1\] 'Package nnet', 2022, https://cran.r-project.org/web/packages/nnet/nnet.pdf(accessed October 13 2022)
 
-\[2\] Obias, Karl, Elmer R Magsino, and Edwin Sybingco. "Neural Network-Based Ridesharing Policy for Reducing Rider Transportation Cost." *Journal of Physics: Conference Series* 1997, no. 1 (2021): 12011--. https://doi.org/10.1088/1742-6596/1997/1/012011.
+\[2\] Cavalcante, Y.L., R.A. Hauser-Davis, A.C.F. Saraiva, I.L.S. Brandão, T.F. Oliveira, and A.M. Silveira. "Metal and Physico-Chemical Variations at a Hydroelectric Reservoir Analyzed by Multivariate Analyses and Artificial Neural Networks: Environmental Management and Policy/decision-Making Tools." *The Science of the Total Environment* 442 (2013): 509--14. https://doi.org/10.1016/j.scitotenv.2012.10.059.
 
 \[3\] Geem, Zong Woo, and William E. Roper. "Energy Demand Estimation of South Korea Using Artificial Neural Network." *Energy Policy* 37, no. 10 (2009): 4049--54. https://doi.org/10.1016/j.enpol.2009.04.049.
 
